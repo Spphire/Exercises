@@ -68,7 +68,7 @@ int main() {
 
     VideoCapture capture;
     Mat OriginalImg;
-    capture.open("/home/apricity/CLionProjects/Test/video001.avi");
+    capture.open("./video.mp4");
     if(!capture.isOpened()){
         cout<<"can not open ..."<<endl;
         return-1;
