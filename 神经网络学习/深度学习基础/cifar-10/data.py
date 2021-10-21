@@ -8,41 +8,20 @@ import os
 class MNIST(Dataset):
     def __init__(self, path, mode):
 
-        if True :
+        if mode=="test" :
             with open(os.path.join(path, f"{mode}_batch"), "rb") as fp:
                 self.xs = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[ : , 1::1].reshape(-1 , 3 , 32 , 32)
             with open(os.path.join(path, f"{mode}_batch"), "rb") as fp:
                 self.ys = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[ : , 0].reshape(-1)
-            return
+            
         if mode=="train" :
 
             with open(os.path.join(path, f"{mode}_batch_1"), "rb") as fp:
-                xs1 = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[:,1::1].reshape(-1, 3, 32, 32)
+                self.xs = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[:,1::1].reshape(-1, 3, 32, 32)
             with open(os.path.join(path, f"{mode}_batch_1"), "rb") as fp:
-                ys1 = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[:,0].reshape(-1)
+                self.ys = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[:,0].reshape(-1)
 
-            with open(os.path.join(path, f"{mode}_batch_2"), "rb") as fp:
-                xs2 = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[:,1::1].reshape(-1, 3, 32, 32)
-            with open(os.path.join(path, f"{mode}_batch_2"), "rb") as fp:
-                ys2 = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[:,0].reshape(-1)
-
-            with open(os.path.join(path, f"{mode}_batch_3"), "rb") as fp:
-                xs3 = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[:,1::1].reshape(-1, 3, 32, 32)
-            with open(os.path.join(path, f"{mode}_batch_3"), "rb") as fp:
-                ys3 = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[:,0].reshape(-1)
-
-            with open(os.path.join(path, f"{mode}_batch_4"), "rb") as fp:
-                xs4 = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[:,1::1].reshape(-1, 3, 32, 32)
-            with open(os.path.join(path, f"{mode}_batch_4"), "rb") as fp:
-                ys4 = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[:,0].reshape(-1)
-
-            with open(os.path.join(path, f"{mode}_batch_5"), "rb") as fp:
-                xs5 = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[:,1::1].reshape(-1, 3, 32, 32)
-            with open(os.path.join(path, f"{mode}_batch_5"), "rb") as fp:
-                ys5 = np.fromfile(fp, dtype=np.uint8).reshape(-1, 3 * 32 * 32 + 1).astype(np.float32)[:,0].reshape(-1)
-
-            self.xs = np.concatenate((xs1,xs2,xs3,xs4,xs5),axis=0)
-            self.ys = np.concatenate((ys1, ys2, ys3, ys4, ys5), axis=0)
+            
     def __len__(self):
         return self.xs.shape[0]
 
