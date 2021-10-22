@@ -63,4 +63,4 @@ if __name__ == "__main__":
     model = ModelImage()
     # model = CnnModel()
     init_model(model)
-    train(model, 128, 7, 0.01, "cpu")
+    train(model, 128, 16, 0.005, "cpu")
