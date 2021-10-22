@@ -9,10 +9,19 @@ class ModelImage(nn.Module):
             nn.Conv2d(3, 8, 3, 1, 1), nn.SiLU(),  # Bx8x32x32
             nn.AvgPool2d(2, 2),  # Bx8x14x14
             nn.Conv2d(8, 32, 3, 1, 1), nn.SiLU(),  # Bx32x16x16
-            nn.AvgPool2d(4, 4),  # Bx32x7x7
-            nn.Conv2d(32, 64, 3, 1, 1), nn.SiLU(),  # Bx64x4x4
-            nn.AvgPool2d(4, 4),  # Bx64x1x1
-            nn.Conv2d(64, 10, 1, 1),  # Bx10x1x1
+            nn.AvgPool2d(2, 2),  # Bx32x4x4
+            nn.Conv2d(32, 64, 3, 1, 1), nn.SiLU(),  # Bx64x8x8
+            nn.AvgPool2d(2, 2),  #
+
+            #nn.Conv2d(64,128,3,1,1),nn.SiLU(),
+            #nn.Conv2d(128, 64, 3, 1, 1), nn.SiLU(),
+
+
+            nn.Conv2d(64, 32, 3, 1, 1), nn.SiLU(),  # Bx32x4x4
+            nn.AvgPool2d(2, 2),  # Bx64x1x1
+            nn.Conv2d(32, 16, 3, 1, 1), nn.SiLU(),  # Bx16x2x2
+            nn.AvgPool2d(2,2),
+            nn.Conv2d(16,10,1,1),
             nn.Flatten(),  # Bx10
         )
 
