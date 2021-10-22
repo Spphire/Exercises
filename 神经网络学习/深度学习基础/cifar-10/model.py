@@ -6,12 +6,12 @@ class ModelImage(nn.Module):
     def __init__(self):
         super(ModelImage, self).__init__()
         self.model = nn.Sequential(  # Bx3x32x32
-            nn.Conv2d(1, 8, 3, 1, 1), nn.SiLU(),  # Bx8x28x28
+            nn.Conv2d(3, 8, 3, 1, 1), nn.SiLU(),  # Bx8x32x32
             nn.AvgPool2d(2, 2),  # Bx8x14x14
-            nn.Conv2d(8, 32, 3, 1, 1), nn.SiLU(),  # Bx32x14x14
-            nn.AvgPool2d(2, 2),  # Bx32x7x7
-            nn.Conv2d(32, 64, 3, 1, 1), nn.SiLU(),  # Bx64x7x7
-            nn.AvgPool2d(7, 7),  # Bx64x1x1
+            nn.Conv2d(8, 32, 3, 1, 1), nn.SiLU(),  # Bx32x16x16
+            nn.AvgPool2d(4, 4),  # Bx32x7x7
+            nn.Conv2d(32, 64, 3, 1, 1), nn.SiLU(),  # Bx64x4x4
+            nn.AvgPool2d(4, 4),  # Bx64x1x1
             nn.Conv2d(64, 10, 1, 1),  # Bx10x1x1
             nn.Flatten(),  # Bx10
         )
